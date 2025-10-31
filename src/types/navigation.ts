@@ -1,3 +1,5 @@
+// Caminho: src/types/navigation.ts
+
 /**
  * Tipos relacionados à navegação
  * Este arquivo contém todas as definições de tipos necessárias para a navegação entre telas
@@ -14,6 +16,7 @@
  * @property DoctorDashboard - Tela do painel do médico
  * @property PatientDashboard - Tela do painel do paciente
  * @property UserManagement - Tela de gerenciamento de usuários
+ * @property SensorDashboard - 🔥 MUDANÇA: Tela para ver os sensores
  */
 export type RootStackParamList = {
   Login: undefined;
@@ -25,4 +28,5 @@ export type RootStackParamList = {
   DoctorDashboard: undefined;
   PatientDashboard: undefined;
   UserManagement: undefined;
-}; 
+  SensorDashboard: undefined; // 🔥 MUDANÇA AQUI
+};

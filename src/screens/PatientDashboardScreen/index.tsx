@@ -1,16 +1,18 @@
-import React from 'react';
-import { ScrollView, ViewStyle, TextStyle } from 'react-native';
-import { Button, ListItem, Text } from 'react-native-elements';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
-import theme from '../../styles/theme';
-import Header from '../../components/Header';
-import { Container, Title, LoadingText } from './styles';
-import AppointmentCard from './components/AppointmentCard';
-import EmptyState from './components/EmptyState';
-import { usePatientAppointments } from './hooks/usePatientAppointments';
+// Caminho: src/screens/PatientDashboardScreen/index.tsx
+
+import React from "react";
+import { ScrollView, ViewStyle, TextStyle } from "react-native";
+import { Button, ListItem, Text } from "react-native-elements";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/navigation";
+import theme from "../../styles/theme";
+import Header from "../../components/Header";
+import { Container, Title, LoadingText } from "./styles";
+import AppointmentCard from "./components/AppointmentCard";
+import EmptyState from "./components/EmptyState";
+import { usePatientAppointments } from "./hooks/usePatientAppointments";
 
 const styles = {
   scrollContent: {
@@ -18,10 +20,15 @@ const styles = {
   },
   button: {
     marginBottom: 20,
-    width: '100%',
+    width: "100%",
   },
   buttonStyle: {
     backgroundColor: theme.colors.primary,
+    paddingVertical: 12,
+  },
+  // 🔥 MUDANÇA: Adicionei um estilo para o botão novo
+  sensorsButtonStyle: {
+    backgroundColor: theme.colors.success, // Um verde pra diferenciar
     paddingVertical: 12,
   },
   logoutButton: {
@@ -30,7 +37,7 @@ const styles = {
   },
   doctorName: {
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: "700",
     color: theme.colors.text,
   },
   specialty: {
@@ -45,18 +52,18 @@ const styles = {
   },
   patientName: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
     color: theme.colors.text,
   },
 };
 
 type PatientDashboardScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'PatientDashboard'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "PatientDashboard">;
 };
 
 const PatientDashboardScreen: React.FC = () => {
   const { signOut } = useAuth();
-  const navigation = useNavigation<PatientDashboardScreenProps['navigation']>();
+  const navigation = useNavigation<PatientDashboardScreenProps["navigation"]>();
   const { appointments, loading, loadAppointments } = usePatientAppointments();
 
   useFocusEffect(
@@ -73,16 +80,24 @@ const PatientDashboardScreen: React.FC = () => {
 
         <Button
           title="Agendar Nova Consulta"
-          onPress={() => navigation.navigate('CreateAppointment')}
+          onPress={() => navigation.navigate("CreateAppointment")}
           containerStyle={styles.button as ViewStyle}
           buttonStyle={styles.buttonStyle}
         />
 
         <Button
           title="Meu Perfil"
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate("Profile")}
           containerStyle={styles.button as ViewStyle}
           buttonStyle={styles.buttonStyle}
+        />
+
+        {/* 🔥 MUDANÇA AQUI: BOTÃO PARA O DASHBOARD DE SENSORES */}
+        <Button
+          title="Ver Sensores"
+          onPress={() => navigation.navigate("SensorDashboard")}
+          containerStyle={styles.button as ViewStyle}
+          buttonStyle={styles.sensorsButtonStyle}
         />
 
         {loading ? (
@@ -91,7 +106,11 @@ const PatientDashboardScreen: React.FC = () => {
           <EmptyState />
         ) : (
           appointments.map((appointment) => (
-            <AppointmentCard key={appointment.id} appointment={appointment} styles={styles} />
+            <AppointmentCard
+              key={appointment.id}
+              appointment={appointment}
+              styles={styles}
+            />
           ))
         )}
 
