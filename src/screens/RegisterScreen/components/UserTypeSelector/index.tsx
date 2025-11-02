@@ -1,28 +1,36 @@
-import React from 'react';
-import { SectionTitle, UserTypeContainer, UserTypeButton, UserTypeText } from './styles';
+import React from "react";
+import {
+  SectionTitle,
+  UserTypeContainer,
+  UserTypeButton,
+  UserTypeText,
+} from "./styles";
 
 interface UserTypeSelectorProps {
-  userType: 'PACIENTE' | 'ADMIN';
-  setUserType: (type: 'PACIENTE' | 'ADMIN') => void;
+  userType: "Usuario" | "ADMIN";
+  setUserType: (type: "Usuario" | "ADMIN") => void;
 }
 
-const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ userType, setUserType }) => (
+const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
+  userType,
+  setUserType,
+}) => (
   <>
     <SectionTitle>Tipo de Usuário</SectionTitle>
     <UserTypeContainer>
       <UserTypeButton
-        selected={userType === 'PACIENTE'}
-        onPress={() => setUserType('PACIENTE')}
+        selected={userType === "Usuario"}
+        onPress={() => setUserType("Usuario")}
       >
-        <UserTypeText selected={userType === 'PACIENTE'}>
-          👤 Paciente
+        <UserTypeText selected={userType === "Usuario"}>
+          👤 Usuario
         </UserTypeText>
       </UserTypeButton>
       <UserTypeButton
-        selected={userType === 'ADMIN'}
-        onPress={() => setUserType('ADMIN')}
+        selected={userType === "ADMIN"}
+        onPress={() => setUserType("ADMIN")}
       >
-        <UserTypeText selected={userType === 'ADMIN'}>
+        <UserTypeText selected={userType === "ADMIN"}>
           🔧 Administrador
         </UserTypeText>
       </UserTypeButton>

@@ -3,7 +3,7 @@
  */
 
 // URL base da API do backend
-export const API_BASE_URL = "http://192.168.15.17:8080";
+export const API_BASE_URL = "http://localhost:8080";
 
 // Endpoints da API
 export const API_ENDPOINTS = {

@@ -1,25 +1,22 @@
-
-import React from 'react';
-import { Input, Button } from 'react-native-elements';
-import { ViewStyle } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
-import { Container } from './styles';
-import AppTitle from './components/AppTitle';
-import ErrorMessage from './components/ErrorMessage';
-import CredentialsHint from './components/CredentialsHint';
-import { styles } from './components/styles';
-import { useLogin } from './hooks/useLogin';
-
+import React from "react";
+import { Input, Button } from "react-native-elements";
+import { ViewStyle } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/navigation";
+import { Container } from "./styles";
+import AppTitle from "./components/AppTitle";
+import ErrorMessage from "./components/ErrorMessage";
+import CredentialsHint from "./components/CredentialsHint";
+import { styles } from "./components/styles";
+import { useLogin } from "./hooks/useLogin";
 
 type LoginScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
 };
 
-
 const LoginScreen: React.FC = () => {
-  const navigation = useNavigation<LoginScreenProps['navigation']>();
+  const navigation = useNavigation<LoginScreenProps["navigation"]>();
   const {
     email,
     setEmail,
@@ -62,8 +59,8 @@ const LoginScreen: React.FC = () => {
       />
 
       <Button
-        title="Cadastrar Novo Paciente"
-        onPress={() => navigation.navigate('Register')}
+        title="Cadastrar Novo usuario"
+        onPress={() => navigation.navigate("Register")}
         containerStyle={styles.registerButton as ViewStyle}
         buttonStyle={styles.registerButtonStyle}
       />

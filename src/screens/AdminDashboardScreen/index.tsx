@@ -1,18 +1,18 @@
-import React from 'react';
-import { ActivityIndicator } from 'react-native';
-import { useAuth } from '../../contexts/AuthContext';
-import Header from '../../components/Header';
-import UserManagement from '../../components/UserManagement';
-import theme from '../../styles/theme';
+import React from "react";
+import { ActivityIndicator } from "react-native";
+import { useAuth } from "../../contexts/AuthContext";
+import Header from "../../components/Header";
+import UserManagement from "../../components/UserManagement";
+import theme from "../../styles/theme";
 
 // Componentes locais
-import TabNavigation from './components/TabNavigation';
-import StatsCard from './components/StatsCard';
-import AppointmentCard from './components/AppointmentCard';
-import EmptyState from './components/EmptyState';
+import TabNavigation from "./components/TabNavigation";
+import StatsCard from "./components/StatsCard";
+import AppointmentCard from "./components/AppointmentCard";
+import EmptyState from "./components/EmptyState";
 
 // Hooks customizados
-import { useAdminDashboard } from './hooks/useAdminDashboard';
+import { useAdminDashboard } from "./hooks/useAdminDashboard";
 
 // Estilos
 import {
@@ -26,11 +26,11 @@ import {
   StatsContainer,
   LoadingContainer,
   LoadingText,
-} from './styles';
+} from "./styles";
 
 /**
  * AdminDashboardScreen Refatorada
- * 
+ *
  * Esta refatoração demonstra:
  * - Separação clara de responsabilidades
  * - Componentes especializados e reutilizáveis
@@ -107,7 +107,7 @@ const AdminDashboardScreen: React.FC = () => {
           subMessage="As consultas aparecerão aqui quando forem criadas"
         />
       ) : (
-        appointments.map(appointment => (
+        appointments.map((appointment) => (
           <AppointmentCard
             key={appointment.id}
             appointment={appointment}
@@ -142,7 +142,7 @@ const AdminDashboardScreen: React.FC = () => {
           iconColor="#fff"
           backgroundColor={theme.colors.success}
           number={userStats.patients}
-          label="Pacientes"
+          label="Usuario"
         />
         <StatsCard
           icon="admin-panel-settings"
@@ -167,15 +167,11 @@ const AdminDashboardScreen: React.FC = () => {
           <Subtitle>Gerencie consultas e usuários da plataforma</Subtitle>
         </HeaderContainer>
 
-        <TabNavigation
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
+        <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-        {activeTab === 'appointments' 
-          ? renderAppointmentsSection() 
-          : renderUsersSection()
-        }
+        {activeTab === "appointments"
+          ? renderAppointmentsSection()
+          : renderUsersSection()}
       </ScrollContainer>
     </Container>
   );

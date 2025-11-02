@@ -39,7 +39,9 @@ const getRoleText = (role: string) => {
     case "doctor":
       return "Médico";
     case "patient":
-      return "Paciente";
+      return "Usuario";
+    case "Usuario":
+      return "Usuario";
     default:
       return role;
   }

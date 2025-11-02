@@ -1,5 +1,5 @@
-import React from 'react';
-import { Badge, RoleText } from './styles';
+import React from "react";
+import { Badge, RoleText } from "./styles";
 
 interface RoleBadgeProps {
   role: string;
@@ -7,12 +7,14 @@ interface RoleBadgeProps {
 
 const getRoleText = (role: string) => {
   switch (role) {
-    case 'admin':
-      return 'Administrador';
-    case 'doctor':
-      return 'Médico';
-    case 'patient':
-      return 'Paciente';
+    case "admin":
+      return "Administrador";
+    case "doctor":
+      return "Médico";
+    case "patient":
+      return "Usuario";
+    case "Usuario":
+      return "Usuario";
     default:
       return role;
   }

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Avatar, Name, Email, SpecialtyText } from './styles';
-import RoleBadge from '../RoleBadge';
+import React from "react";
+import { Card, Avatar, Name, Email, SpecialtyText } from "./styles";
+import RoleBadge from "../RoleBadge";
 
 interface ProfileCardProps {
   user: {
@@ -14,24 +14,28 @@ interface ProfileCardProps {
 
 const getRoleText = (role: string) => {
   switch (role) {
-    case 'admin':
-      return 'Administrador';
-    case 'doctor':
-      return 'Médico';
-    case 'patient':
-      return 'Paciente';
+    case "admin":
+      return "Administrador";
+    case "doctor":
+      return "Médico";
+    case "patient":
+      return "Usuario";
     default:
+    case "Usuario":
+      return "Usuario";
       return role;
   }
 };
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => (
   <Card>
-    <Avatar source={{ uri: user?.image || 'https://via.placeholder.com/150' }} />
+    <Avatar
+      source={{ uri: user?.image || "https://via.placeholder.com/150" }}
+    />
     <Name>{user?.name}</Name>
     <Email>{user?.email}</Email>
-    <RoleBadge role={user?.role || ''} />
-    {user?.role === 'doctor' && (
+    <RoleBadge role={user?.role || ""} />
+    {user?.role === "doctor" && (
       <SpecialtyText>Especialidade: {user?.specialty}</SpecialtyText>
     )}
   </Card>

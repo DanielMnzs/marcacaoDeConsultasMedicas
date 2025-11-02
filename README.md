@@ -1,158 +1,127 @@
-### GRUPO:
+🚀 App de Agendamento de Processos (FESTO)
+Este é um projeto full-stack que simula uma plataforma de agendamento de processos, inspirado no contexto industrial (FESTO). A aplicação permite que usuários ("Usuários") agendem horários com especialistas ("Profissionais") para iniciar ou acompanhar processos de software, e também monitorem dados de sensores em tempo real.
 
-Murilo Pomin rm:99683
-Gabriel Taboada rm:97957
-Daniel Menezes rm:551398
-Luiz Augusto Melki rm:552053
-Pedro Martins rm:98663
+O projeto é dividido em:
 
-# Sistema de Agendamento de Consultas Médicas
+Backend: Uma API RESTful construída com Spring Boot (Java).
 
-[![React Native](https://img.shields.io/badge/React%20Native-0.72.0-blue.svg)](https://reactnative.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.0-blue.svg)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+Frontend: Um aplicativo móvel (e web) construído com React Native (Expo).
 
-Um aplicativo mobile para agendamento de consultas médicas, desenvolvido com React Native e TypeScript.
+✨ Funcionalidades Principais
+Autenticação JWT: Sistema completo de Login e Cadastro com tokens JWT.
 
-## Sobre o Projeto
+Perfis de Usuário: Três níveis de acesso (Administrador, Profissional e Usuário).
 
-Este é um aplicativo mobile desenvolvido em React Native para agendamento de consultas médicas. O sistema permite que pacientes visualizem médicos disponíveis, agendem consultas e gerenciem seus compromissos médicos de forma simples e intuitiva.
+Agendamento de Processos: Usuários podem agendar horários com profissionais (antigos "Médicos") com base na "Profissão" (antiga "Especialidade").
 
-### Funcionalidades Principais
+Dashboards por Perfil:
 
-- Visualização de médicos disponíveis
-- Agendamento de consultas
-- Gerenciamento de consultas (visualizar, editar, cancelar)
-- Interface intuitiva e responsiva
-- Persistência de dados local
-- Validação de datas e horários
-- Seleção de médicos por especialidade
+Admin: Visualiza estatísticas, gerencia usuários (altera senhas) e agendamentos.
 
-## Tecnologias Utilizadas
+Profissional: Vê seus agendamentos pendentes e pode confirmá-los ou cancelá-los.
 
-- [React Native](https://reactnative.dev/) - Framework para desenvolvimento mobile
-- [TypeScript](https://www.typescriptlang.org/) - Superset JavaScript com tipagem estática
-- [Styled Components](https://styled-components.com/) - Estilização com CSS-in-JS
-- [React Navigation](https://reactnavigation.org/) - Navegação entre telas
-- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Armazenamento local
-- [React Native Elements](https://reactnativeelements.com/) - Biblioteca de componentes UI
+Usuário: Vê seus agendamentos e pode criar novos.
 
-## Pré-requisitos
+Dashboard de Sensores: Uma tela que consome o endpoint /readings do backend para exibir as últimas leituras de múltiplos sensores, atendendo ao requisito da Sprint.
 
-Antes de começar, você precisa ter instalado em sua máquina:
+💻 Tecnologias Utilizadas
+Backend (API)
+Java 17
 
-- [Node.js](https://nodejs.org/) (versão 14 ou superior)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- [React Native CLI](https://reactnative.dev/docs/environment-setup)
-- [Android Studio](https://developer.android.com/studio) (para desenvolvimento Android)
-- [Xcode](https://developer.apple.com/xcode/) (para desenvolvimento iOS, apenas em macOS)
+Spring Boot: Para a estrutura da API RESTful.
 
-## Instalação
+Spring Security: Para segurança e autenticação com JWT.
 
-1. Clone o repositório:
+Spring Data JPA (Hibernate): Para persistência de dados.
 
-```bash
-git clone https://github.com/seu-usuario/marcacaoDeConsultasMedicas.git
-cd marcacaoDeConsultasMedicas
-```
+PostgreSQL: Banco de dados relacional.
 
-2. Instale as dependências:
+Maven: Para gerenciamento de dependências.
 
-```bash
+Frontend (App)
+React Native (Expo)
+
+TypeScript
+
+React Navigation: Para gerenciamento de rotas e navegação.
+
+Context API: Para gerenciamento de estado global (ex: Autenticação).
+
+Styled Components: Para estilização.
+
+Axios (via apiClient): Para as requisições HTTP.
+
+⚙️ Pré-requisitos
+Para rodar este projeto, você precisará ter instalado em sua máquina:
+
+Java JDK 17+
+
+Maven 3.x+
+
+Node.js (LTS)
+
+npm ou yarn
+
+npx expo-cli
+
+Uma instância do PostgreSQL rodando (localmente ou em um container).
+
+🚀 Como Executar o Projeto
+
+1. Backend (Spring Boot)
+   Configure o Banco de Dados:
+
+Certifique-se de que seu PostgreSQL está rodando.
+
+Crie um banco de dados (ex: postgres).
+
+Abra o arquivo src/main/resources/application.properties.
+
+Configure as propriedades spring.datasource.url, spring.datasource.username e spring.datasource.password com suas credenciais do Postgres. (O padrão atual é postgres/123456).
+
+Delete o Flag de Inicialização (Importante):
+
+Para garantir que o backend popule o banco com os dados atualizados (ex: as novas "Profissões"), delete o arquivo ./data/db_initialized.flag na raiz do projeto backend.
+
+Rode a Aplicação:
+
+Abra a classe ApiMarcacaoConsultasApplication.java.
+
+Inicie a aplicação (pelo "Play" do VS Code ou mvn spring-boot:run).
+
+O backend estará rodando em http://localhost:8080.
+
+2. Frontend (React Native / Expo)
+   Instale as Dependências:
+
+Bash
+
+cd pasta-do-frontend
 npm install
-# ou
-yarn install
-```
+Configure a URL da API:
 
-3. Instale as dependências do iOS (apenas em macOS):
+Abra o arquivo src/services/api.ts.
 
-```bash
-cd ios
-pod install
-cd ..
-```
+Certifique-se de que API_BASE_URL esteja apontando para o seu backend.
 
-4. Inicie o aplicativo:
+Para testes no navegador web ou emulador Android, use: export const API_BASE_URL = "http://localhost:8080";
 
-```bash
-# Para Android
-npm run android
-# ou
-yarn android
+Para testes no celular físico (Expo Go), use o IP da sua máquina na rede (ex: http://192.168.X.X:8080).
 
-# Para iOS (apenas em macOS)
-npm run ios
-# ou
-yarn ios
-```
+Inicie o App:
 
-## Estrutura do Projeto
+Bash
 
-```
-src/
-├── components/     # Componentes reutilizáveis
-│   ├── Header/    # Componente de cabeçalho
-│   └── AppointmentForm/  # Formulário de agendamento
-├── screens/        # Telas do aplicativo
-│   ├── HomeScreen.tsx
-│   └── CreateAppointmentScreen.tsx
-├── styles/         # Estilos globais e tema
-│   └── theme.ts
-├── types/          # Definições de tipos TypeScript
-│   ├── appointments.ts
-│   ├── doctors.ts
-│   └── navigation.ts
-└── utils/          # Funções utilitárias
-```
+npx expo start
+Escaneie o QR Code com o app Expo Go no seu celular, ou aperte w para rodar na web.
 
-## Funcionalidades Detalhadas
+🔑 Credenciais de Teste
+Você pode usar as seguintes credenciais para testar os diferentes perfis (senha padrão: admin123 ou senha123, dependendo do DataInitializer):
 
-### Agendamento de Consultas
+Administrador: admin@clinica.com
 
-- Seleção de médico por especialidade
-- Escolha de data e horário
-- Adição de descrição/motivo da consulta
-- Validação de disponibilidade
+Profissional (Ex): carlos.silva@clinica.com
 
-### Gerenciamento de Consultas
+Usuário (Ex): joao.pereira@email.com
 
-- Visualização de todas as consultas agendadas
-- Edição de consultas existentes
-- Cancelamento de consultas
-- Atualização de status
-
-### Interface do Usuário
-
-- Design moderno e responsivo
-- Navegação intuitiva
-- Feedback visual de ações
-- Suporte a temas claro/escuro
-
-## Contribuição
-
-Para contribuir com o projeto:
-
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## Agradecimentos
-
-- [React Native Community](https://reactnative.dev/help)
-- [React Navigation](https://reactnavigation.org/)
-- [Styled Components](https://styled-components.com/)
-- Todos os contribuidores do projeto
-
-## Suporte
-
-Se você encontrar algum problema ou tiver sugestões, por favor abra uma issue no GitHub.
-
----
-
-Desenvolvido por Professor Hete Caetano e compartilhado com alunos de TDS
+As senhas e usuários são criados no arquivo DataInitializer.java do backend.

@@ -76,10 +76,10 @@ const PatientDashboardScreen: React.FC = () => {
     <Container>
       <Header />
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Title>Minhas Consultas</Title>
+        <Title>Hub De Agendamentos</Title>
 
         <Button
-          title="Agendar Nova Consulta"
+          title="Agendamento"
           onPress={() => navigation.navigate("CreateAppointment")}
           containerStyle={styles.button as ViewStyle}
           buttonStyle={styles.buttonStyle}
