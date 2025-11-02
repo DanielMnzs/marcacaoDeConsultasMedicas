@@ -1,65 +1,57 @@
-import React from 'react';
-import { FlatList, RefreshControl } from 'react-native';
-import { Button } from 'react-native-elements';
-import { FontAwesome } from '@expo/vector-icons';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from "react";
+import { FlatList, RefreshControl } from "react-native";
+import { Button } from "react-native-elements";
+import { FontAwesome } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 // Componentes locais
-import Header from '../../components/Header';
-import AppointmentCard from './components/AppointmentCard';
-import EmptyState from './components/EmptyState';
+import Header from "../../components/Header";
+import AppointmentCard from "./components/AppointmentCard";
+import EmptyState from "./components/EmptyState";
 
 // Hooks customizados
-import { useHomeScreen } from './hooks/useHomeScreen';
+import { useHomeScreen } from "./hooks/useHomeScreen";
 
 // Estilos
-import { 
-  Container, 
-  Content, 
-  AppointmentList, 
-  TitleContainer, 
-  Title 
-} from './styles';
+import {
+  Container,
+  Content,
+  AppointmentList,
+  TitleContainer,
+  Title,
+} from "./styles";
 
 // Tipos
-import { RootStackParamList } from '../../types/navigation';
-import { Appointment } from '../../types/appointments';
-import theme from '../../styles/theme';
+import { RootStackParamList } from "../../types/navigation";
+import { Appointment } from "../../types/appointments";
+import theme from "../../styles/theme";
 
 type HomeScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Home">;
 };
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-  const {
-    appointments,
-    doctors,
-    refreshing,
-    onRefresh,
-    getDoctorInfo
-  } = useHomeScreen();
+  const { appointments, doctors, refreshing, onRefresh, getDoctorInfo } =
+    useHomeScreen();
 
   const renderAppointment = ({ item }: { item: Appointment }) => (
-    <AppointmentCard 
-      appointment={item}
-      doctor={getDoctorInfo(item.doctorId)}
-    />
+    <AppointmentCard appointment={item} doctor={getDoctorInfo(item.doctorId)} />
   );
 
   const handleCreateAppointment = () => {
-    navigation.navigate('CreateAppointment');
+    navigation.navigate("CreateAppointment");
   };
 
   return (
     <Container>
       <Header />
       <TitleContainer>
-        <Title>Minhas Consultas</Title>
+        <Title>Hub FESTO</Title>
       </TitleContainer>
 
       <Content>
         <Button
-          title="Agendar Nova Consulta"
+          title="Agendamento"
           icon={
             <FontAwesome
               name="calendar-plus-o"
@@ -72,7 +64,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             backgroundColor: theme.colors.primary,
             borderRadius: 8,
             padding: 12,
-            marginBottom: theme.spacing.medium
+            marginBottom: theme.spacing.medium,
           }}
           onPress={handleCreateAppointment}
         />

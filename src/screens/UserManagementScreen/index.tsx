@@ -1,12 +1,12 @@
-import React from 'react';
-import { ScrollView, ViewStyle } from 'react-native';
-import { Button } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../../components/Header';
-import { Container, Title, LoadingText, EmptyText } from './styles';
-import UserList from './components/UserList';
-import ErrorMessage from './components/ErrorMessage';
-import { useUserManagement } from './hooks/useUserManagement';
+import React from "react";
+import { ScrollView, ViewStyle } from "react-native";
+import { Button } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import Header from "../../components/Header";
+import { Container, Title, LoadingText, EmptyText } from "./styles";
+import UserList from "./components/UserList";
+import ErrorMessage from "./components/ErrorMessage";
+import { useUserManagement } from "./hooks/useUserManagement";
 
 const styles = {
   scrollContent: {
@@ -14,49 +14,49 @@ const styles = {
   },
   button: {
     marginBottom: 20,
-    width: '100%',
+    width: "100%",
   },
   buttonStyle: {
-    backgroundColor: '#1976d2',
+    backgroundColor: "#1976d2",
     paddingVertical: 12,
   },
   backButton: {
-    backgroundColor: '#1976d2',
+    backgroundColor: "#1976d2",
     opacity: 0.7,
     paddingVertical: 12,
   },
   actionButton: {
     marginTop: 8,
-    width: '48%',
+    width: "48%",
   },
   editButton: {
-    backgroundColor: '#1976d2',
+    backgroundColor: "#1976d2",
     paddingVertical: 8,
   },
   deleteButton: {
-    backgroundColor: '#d32f2f',
+    backgroundColor: "#d32f2f",
     paddingVertical: 8,
   },
   userName: {
     fontSize: 18,
-    fontWeight: '700',
-    color: '#222',
+    fontWeight: "700",
+    color: "#222",
   },
   userEmail: {
     fontSize: 14,
-    color: '#222',
+    color: "#222",
     marginTop: 4,
   },
 };
 
 const getRoleText = (role: string) => {
   switch (role) {
-    case 'admin':
-      return 'Administrador';
-    case 'doctor':
-      return 'Médico';
-    case 'patient':
-      return 'Paciente';
+    case "admin":
+      return "Administrador";
+    case "doctor":
+      return "Médico";
+    case "patient":
+      return "Usuario";
     default:
       return role;
   }
@@ -64,7 +64,8 @@ const getRoleText = (role: string) => {
 
 const UserManagementScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { users, loading, error, loadUsers, handleDeleteUser } = useUserManagement();
+  const { users, loading, error, loadUsers, handleDeleteUser } =
+    useUserManagement();
 
   React.useEffect(() => {
     loadUsers();

@@ -1,6 +1,6 @@
-import React from 'react';
-import { EmptyText } from './styles';
+import React from "react";
+import { EmptyText } from "./styles";
 
-const EmptyState: React.FC = () => <EmptyText>Nenhuma consulta agendada</EmptyText>;
+const EmptyState: React.FC = () => <EmptyText>Nenhuma Agenda</EmptyText>;
 
 export default EmptyState;

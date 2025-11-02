@@ -1,8 +1,6 @@
-import React from 'react';
-import { Title } from './styles';
+import React from "react";
+import { Title } from "./styles";
 
-const AppTitle: React.FC = () => (
-  <Title>App Marcação de Consultas</Title>
-);
+const AppTitle: React.FC = () => <Title>App Agendamento FESTO</Title>;
 
 export default AppTitle;

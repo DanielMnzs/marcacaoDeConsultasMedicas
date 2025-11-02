@@ -1,32 +1,37 @@
-import React from 'react';
-import { ListItem, Text } from 'react-native-elements';
-import { Card } from './styles';
-import StatusBadge from '../StatusBadge';
+import React from "react";
+import { ListItem, Text } from "react-native-elements";
+import { Card } from "./styles";
+import StatusBadge from "../StatusBadge";
+
+// AJUSTE 1: Importa o tipo 'Appointment' correto do serviço
+import { Appointment } from "../../../../services/appointmentsApi";
 
 interface AppointmentCardProps {
-  appointment: {
-    id: string;
-    patientName: string;
-    doctorName: string;
-    date: string;
-    time: string;
-    specialty: string;
-    status: string;
-  };
+  // AJUSTE 2: Usa a interface 'Appointment' importada
+  appointment: Appointment;
   styles: any;
 }
 
-const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment, styles }) => (
+// AJUSTE 3: Atualiza o componente para usar os dados que existem em 'Appointment'
+const AppointmentCard: React.FC<AppointmentCardProps> = ({
+  appointment,
+  styles,
+}) => (
   <Card>
     <ListItem.Content>
       <ListItem.Title style={styles.patientName}>
-        Paciente: {appointment.patientName}
+        {/* 'patientName' e 'doctorName' não existem neste tipo de Appointment */}
+        {/* Exibe a especialidade */}
+        Especialidade: {appointment.specialty}
       </ListItem.Title>
       <ListItem.Subtitle style={styles.dateTime}>
         {appointment.date} às {appointment.time}
       </ListItem.Subtitle>
-      <Text style={styles.doctorName}>{appointment.doctorName}</Text>
-      <Text style={styles.specialty}>{appointment.specialty}</Text>
+      {/* Exibe as notas da consulta */}
+      <Text style={styles.doctorName}>
+        {appointment.notes || "Consulta Agendada"}
+      </Text>
+      {/* <Text style={styles.specialty}>{appointment.specialty}</Text> // <- Já está no título */}
       <StatusBadge status={appointment.status} />
     </ListItem.Content>
   </Card>

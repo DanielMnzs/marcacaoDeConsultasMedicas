@@ -1,16 +1,16 @@
-import React from 'react';
-import { ScrollView, ViewStyle, TextStyle } from 'react-native';
-import { Button, ListItem, Text } from 'react-native-elements';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
-import theme from '../../styles/theme';
-import Header from '../../components/Header';
-import { Container, Title, LoadingText } from './styles';
-import AppointmentCard from './components/AppointmentCard';
-import EmptyState from './components/EmptyState';
-import { usePatientAppointments } from './hooks/usePatientAppointments';
+import React from "react";
+import { ScrollView, ViewStyle, TextStyle } from "react-native";
+import { Button, ListItem, Text } from "react-native-elements";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/navigation";
+import theme from "../../styles/theme";
+import Header from "../../components/Header";
+import { Container, Title, LoadingText } from "./styles";
+import AppointmentCard from "./components/AppointmentCard";
+import EmptyState from "./components/EmptyState";
+import { usePatientAppointments } from "./hooks/usePatientAppointments";
 
 const styles = {
   scrollContent: {
@@ -18,7 +18,7 @@ const styles = {
   },
   button: {
     marginBottom: 20,
-    width: '100%',
+    width: "100%",
   },
   buttonStyle: {
     backgroundColor: theme.colors.primary,
@@ -30,7 +30,7 @@ const styles = {
   },
   doctorName: {
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: "700",
     color: theme.colors.text,
   },
   specialty: {
@@ -45,18 +45,18 @@ const styles = {
   },
   patientName: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
     color: theme.colors.text,
   },
 };
 
 type PatientDashboardScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'PatientDashboard'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "PatientDashboard">;
 };
 
 const PatientDashboardScreen: React.FC = () => {
   const { signOut } = useAuth();
-  const navigation = useNavigation<PatientDashboardScreenProps['navigation']>();
+  const navigation = useNavigation<PatientDashboardScreenProps["navigation"]>();
   const { appointments, loading, loadAppointments } = usePatientAppointments();
 
   useFocusEffect(
@@ -69,18 +69,18 @@ const PatientDashboardScreen: React.FC = () => {
     <Container>
       <Header />
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Title>Minhas Consultas</Title>
+        <Title>Hub FESTO</Title>
 
         <Button
-          title="Agendar Nova Consulta"
-          onPress={() => navigation.navigate('CreateAppointment')}
+          title="Agendamento"
+          onPress={() => navigation.navigate("CreateAppointment")}
           containerStyle={styles.button as ViewStyle}
           buttonStyle={styles.buttonStyle}
         />
 
         <Button
           title="Meu Perfil"
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate("Profile")}
           containerStyle={styles.button as ViewStyle}
           buttonStyle={styles.buttonStyle}
         />
@@ -91,7 +91,11 @@ const PatientDashboardScreen: React.FC = () => {
           <EmptyState />
         ) : (
           appointments.map((appointment) => (
-            <AppointmentCard key={appointment.id} appointment={appointment} styles={styles} />
+            <AppointmentCard
+              key={appointment.id}
+              appointment={appointment}
+              styles={styles}
+            />
           ))
         )}
 
